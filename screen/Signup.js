@@ -2,42 +2,40 @@ import React, { useState } from 'react'
 
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { authentification } from '../config/firebase';
-import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View, ScrollView } from 'react-native'
+import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View,ScrollView } from 'react-native'
+
 import { useNavigation } from '@react-navigation/native';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+
 
 
 const LoginScreens = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-const navigation = useNavigation()
-const signIn = () => {
-  signInWithEmailAndPassword(authentification,email, password)
 
-    .then((userCredential) => {
-      // Signed in
-      console.log(userCredential.user);
-      const user = userCredential.user;
-      if(user.emailVerified){
-        navigation.navigate('Maps')
-      }
-      else{
-        alert('Please verify your email')
-      }
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
+  const navigation = useNavigation()
+  const signUp = () => {
 
-      console.warn(errorMessage)
-    });
-    
-  
-}
+    createUserWithEmailAndPassword(authentification, email, password)
+      .then((userCredential) => {
+        // Signed in 
+        console.log(userCredential.user);
+        const user = userCredential.user;
+        if(user){
+          navigation.navigate('Maps')
+        }
+        
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+
+        console.warn(errorMessage)
+      });
+  }
 
 
   return (
-    <ScrollView style={styles.scrollView}>
+<ScrollView style={styles.scrollView}>
     <KeyboardAvoidingView
     style={styles.container}
     behavior="padding"
@@ -59,14 +57,9 @@ const signIn = () => {
     </View>
 
     <View style={styles.buttonContainer}>
+      
       <TouchableOpacity
-         onPress={()=>navigation.navigate('Maps')}
-        style={styles.button}
-      >
-        <Text style={styles.buttonText}>Login</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() => navigation.navigate('Signup')}
+        onPress={signUp}
         style={[styles.button, styles.buttonOutline]}
       >
         <Text style={styles.buttonOutlineText}>Register</Text>
@@ -124,8 +117,8 @@ const styles = StyleSheet.create({
       fontWeight: '700',
       fontSize: 16,
     },
-    scrollView: {
-    marginTop:300
-    }
 
+    scrollView: {
+      marginTop:300
+      }
 })
