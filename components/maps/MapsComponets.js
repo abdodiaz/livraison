@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Platform } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import React from 'react'
 import MapView from 'react-native-maps';
 export default function MapsComponets({latitude, longitude}) {
