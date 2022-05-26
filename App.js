@@ -16,40 +16,10 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen options={{ headerShown: false }} name="Login" component={LoginScreens} />
-        <Stack.Screen name="Signup" component={Signup} />
-        <Stack.Screen name="Maps" component={Maps} />
+        <Stack.Screen options={{ headerShown: false }} name="Signup" component={Signup} />
+        <Stack.Screen options={{ headerShown: false }} name="Maps" component={Maps} />
       </Stack.Navigator>
     </NavigationContainer>
   )
 
-
-  {// if(latitude&&longitude){
-
-
-    //  else{
-    //     return(
-
-    //       
-
-    //     );
-    //   }
-
-    //  }}
-  }
-
-
-
-
-
-
 }
-
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

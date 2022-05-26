@@ -8,12 +8,11 @@ const Maps = () => {
 const [latitude, longitude] = Useposstion();
 
   return (
+   
     <MapsComponets latitude={latitude} longitude={longitude}  />
+
   )
 }
 
 export default Maps
 
-const styles = StyleSheet.create({
-
-})
